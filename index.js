@@ -2,8 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
+const util = require('util');
 
-
+const writeFileAsync = util.promisify(fs.writeFile);
 
 // array of questions for user
 const promptUser = () =>
@@ -61,41 +62,32 @@ const promptUser = () =>
   },
   ]);
 
+
+  const writeToFile = (response) =>
+  `## ${response.title}
+  ## Description
+  ${response.description}
+  # Table of Content
+  ${response.content}
+  # Installation
+  ${response.installation}
+  # Usage
+  ${response.usage}
+  # License
+  ${response.license}
+  # Contributing
+  ${response.contributing}
+  #Tests
+  ${response.test}
+  }
+  `
+
   promptUser()
-  .then((response => {
-  writeToFile()
-  .then(() => console.log('Successfully wrote to index.html'))
+  .then((response) => writeFileAsync('README.md', writeToFile(response)))
+  .then(() => console.log('Successfully wrote to README.md'))
   .catch((err) => console.error(err));
-  }));
+ 
 
-
-// function to write README file
-function writeToFile(fileName, data) {
-    fs.writeFile('README.md',
-
-    `## ${response.title}
-    ## Description
-    ${response.description}
-    # Table of Content
-    ${response.content}
-    # Installation
-    ${response.installation}
-    # Usage
-    ${response.usage}
-    # License
-    ${response.license}
-    # Contributing
-    ${response.contributing}
-    #Tests
-    ${response.test}
-    }
-    `, (err) => {
-        err ?
-          console.log(err)
-       :
-          console.log("File written successfully\n");
-        }
-        )}
 
 
 // // function to initialize program
