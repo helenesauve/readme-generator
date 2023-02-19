@@ -36,13 +36,13 @@ const promptUser = () =>
   },
   {
     type: "list",
-    message: "What kimd of license should your project have?",
-    name: "license",
-    choices: ['MIT', 'Apache', 'GPL', 'BSD']
+    message: "What kind of licence should your project have?",
+    name: "licence",
+    choices: ['MIT', 'Apache', 'GPL']
   },
   {
     type: "input",
-    message: "What command should you used to install dependencies?",
+    message: "What command should you use to install dependencies?",
     name: "installation",
   },
   {
@@ -62,10 +62,25 @@ const promptUser = () =>
   },
   ]);
 
+  // function that translates licence input into badge
+let licenceIcon;
+const licenceResult = (iconCheck) => {
 
+  if (iconCheck === "MIT") {
+    return licenceIcon = ("https://img.shields.io/badge/licence-MIT-green.svg")
+  }
+  else if (iconCheck === "Apache") {
+  return licenceIcon = ("https://img.shields.io/badge/licence-Apache-blue.svg")
+  }
+  else {
+    return licenceIcon = ("https://img.shields.io/badge/licence-GPL-blue.svg")
+    }
+}
+
+  // function that collects answers from the response
   const writeToFile = (response) =>
   `## ${response.title}
-  ## Description
+  ![GitHub licence](${licenceResult(response.licence)})
   ${response.description}
   # Table of Content
   ${response.content}
@@ -73,13 +88,15 @@ const promptUser = () =>
   ${response.installation}
   # Usage
   ${response.usage}
-  # License
-  ${response.license}
+  # Licence
+  ${response.licence}
   # Contributing
   ${response.contributing}
-  #Tests
+  # Tests
   ${response.test}
-  }
+  # Questions
+  ${response.github}
+  Any questions, you can reach out at ${response.email}
   `
 
   promptUser()
