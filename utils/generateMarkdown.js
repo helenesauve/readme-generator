@@ -25,7 +25,7 @@ ${response.description}
 - [Questions](#questions)
 
 ## Installation
-${response.installation}
+You'll want to use ${response.installation} to install dependencies
 ## Usage
 ${response.usage}
 ## Licence
@@ -33,7 +33,7 @@ ${response.licence}
 ## Contributing
 ${response.contributing}
 ## Tests
-${response.test}
+You'll want to use ${response.test} to run tests
 ## Questions
 [You can find my repo here](https://www.github.com/${response.github})
 Any questions, you can reach out at ${response.email}
