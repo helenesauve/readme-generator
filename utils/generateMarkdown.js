@@ -13,6 +13,8 @@ const licenceResult = (iconCheck) => {
 function generateMarkdown(response) {
   return   `# ${response.title}
 ![GitHub licence](${licenceResult(response.licence)})
+
+## Description
 ${response.description}
 ## Table of Contents
 - [Installation](#installation)
