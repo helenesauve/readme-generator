@@ -20,11 +20,6 @@ const questions = [
     name: "description",
   },
   {
-    type: "input",
-    message: "Please provide the table of content for your project",
-    name: "content",
-  },
-  {
     type: "list",
     message: "What kind of licence should your project have?",
     name: "licence",
